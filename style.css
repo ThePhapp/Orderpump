@@ -35,17 +35,6 @@ header {
   color: #b873ff;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: 500;
-}
-
-nav a:hover {
-  color: #b873ff;
-}
-
 main {
   display: flex;
   justify-content: center;
@@ -84,12 +73,14 @@ main {
 .tool-card h2 {
   font-size: 20px;
   margin: 15px 0 10px;
+    line-height: 1.6;
 }
 
 .tool-card h3 {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 20px;
+  line-height: 1.6;
 }
 
 .values-section {
@@ -186,7 +177,7 @@ main {
 }
 
 .content-box h2 {
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 20px;
   font-weight: bold;
 }
