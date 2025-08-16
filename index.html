@@ -88,3 +88,14 @@
 
 </body>
 </html>
+<script>
+  const buttons = document.querySelectorAll('.btn-buy');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      const productKey = 'pro';
+      window.location.href = `public/checkout.html?product=${productKey}`;
+    });
+  });
+</script>
