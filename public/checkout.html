@@ -45,48 +45,57 @@
       <img src="image/thread.jpg" alt="Thread" /> Liên hệ mình qua Thread
     </a>
   </div>
-  <script>
-    // Dữ liệu gói hàng
-    const products = {
-      basic: {
-        name: "Gói Cơ Bản",
-        price: "97,000₫"
-      },
-      pro: {
-        name: "Gói Solo Mode",
-        price: "497,000₫"
-      },
-      full: {
-        name: "Gói Guild Mode (Full Coaching)",
-        price: "997,000₫"
-      }
-    };
+<script>
+  const products = {
+    basic: { name: "Gói Cơ Bản", price: "97,000₫" },
+    pro: { name: "Gói Solo Mode", price: "497,000₫" },
+    full: { name: "Gói Guild Mode (Full Coaching)", price: "997,000₫" }
+  };
 
-    const query = new URLSearchParams(window.location.search);
-    const productKey = query.get("product");
-
-    const nameElement = document.getElementById("product-name");
-    const priceElement = document.getElementById("product-price");
-
-    if (products[productKey]) {
-      nameElement.textContent = products[productKey].name;
-      priceElement.textContent = products[productKey].price;
-    } else {
-      nameElement.textContent = "Sản phẩm không xác định";
-      priceElement.textContent = "-";
-    }
-
-    document.getElementById("checkout-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const fullName = document.querySelector('input[name="fullname"]').value;
   const query = new URLSearchParams(window.location.search);
   const productKey = query.get("product");
 
-  const successUrl = `success.html?name=${encodeURIComponent(fullName)}&product=${productKey}`;
-  window.location.href = successUrl;
-});
+  const nameElement = document.getElementById("product-name");
+  const priceElement = document.getElementById("product-price");
 
-  </script>
+  if (products[productKey]) {
+    nameElement.textContent = products[productKey].name;
+    priceElement.textContent = products[productKey].price;
+  } else {
+    nameElement.textContent = "Sản phẩm không xác định";
+    priceElement.textContent = "-";
+  }
+
+  document.getElementById("checkout-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const fullName = document.querySelector('input[name="fullname"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const product = products[productKey]?.name || "Không xác định";
+
+    // 🔹 API SheetDB (dán link của bạn vào đây)
+    const sheetdbAPI = "https://sheetdb.io/api/v1/cprujmzoaay6j";
+
+    // Gửi dữ liệu vào Sheet
+    await fetch(sheetdbAPI, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    data: [
+      {
+        fullname: fullName,
+        email: email,
+        product: product,
+        time: new Date().toLocaleString("vi-VN")
+      }
+    ]
+  })
+});
+    // Chuyển sang trang thành công
+    const successUrl = `success.html?name=${encodeURIComponent(fullName)}&product=${productKey}`;
+    window.location.href = successUrl;
+  });
+</script>
+
 </body>
 </html>
