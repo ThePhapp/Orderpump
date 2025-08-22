@@ -31,6 +31,7 @@
         MOMO_NGUYEN LE DONG GIANG
       </div>
       <div class="qr-caption">Quét mã QR để thanh toán</div>
+      <strong>Lưu ý:</strong> Nội dung chuyển khoản: <em>Họ và tên</em> đã điền ở trên.
     </div>
 
     <button type="submit" class="buy-btn">XÁC NHẬN MUA</button>
@@ -47,7 +48,7 @@
   </div>
 <script>
   const products = {
-    basic: { name: "Gói Cơ Bản", price: "97,000₫" },
+    basic: { name: "Solo Topik Leveling - Vocabulary", price: "99,000₫" },
     pro: { name: "Gói Solo Mode", price: "497,000₫" },
     full: { name: "Gói Guild Mode (Full Coaching)", price: "997,000₫" }
   };
@@ -74,7 +75,7 @@
     const product = products[productKey]?.name || "Không xác định";
 
     // 🔹 API SheetDB (dán link của bạn vào đây)
-    const sheetdbAPI = "https://sheetdb.io/api/v1/cprujmzoaay6j";
+    const sheetdbAPI = "https://sheetdb.io/api/v1/oiv9on73wke52";
 
     // Gửi dữ liệu vào Sheet
     await fetch(sheetdbAPI, {
